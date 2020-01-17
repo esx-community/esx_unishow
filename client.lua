@@ -1,4 +1,4 @@
- ESX                             = nil
+ ESX = nil
 
 Citizen.CreateThread(function()
   while ESX == nil do
@@ -7,9 +7,7 @@ Citizen.CreateThread(function()
   end
 end)
 
-
 function OpenPositionMenu(zone)
-
 	local elements = {}
 
 	for k,v in pairs(Config.Salle) do
@@ -19,28 +17,23 @@ function OpenPositionMenu(zone)
      })
 	end
 
-
 	ESX.UI.Menu.CloseAll()
 
-	ESX.UI.Menu.Open(
-		'default', GetCurrentResourceName(), 'strip',
-		{
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'strip', {
 			title  = 'Position Menu',
 			elements = elements
-		},
-		function(data, menu)
+		}, function(data, menu)
       OpenDancerMenu(data.current,zone)
-		end,
-		function(data, menu)
+		end, function(data, menu)
 
 			menu.close()
 
 			CurrentAction     = 'strip_menu'
 			CurrentActionMsg  = 'menu'
 			CurrentActionData = {zone = zone}
-		end
-	)
+		end)
 end
+
 function OpenDancerMenu(position,zone)
   local position = position
 	local elements = {}
@@ -48,8 +41,8 @@ function OpenDancerMenu(position,zone)
       label = 'Personne',
       hash  = '',
       type = ''
-
     })
+
   for i=1,#Config.Ped do
     table.insert(elements,{
       label = Config.Ped[i].label,
@@ -61,65 +54,55 @@ function OpenDancerMenu(position,zone)
 
 	ESX.UI.Menu.CloseAll()
 
-	ESX.UI.Menu.Open(
-		'default', GetCurrentResourceName(), 'strip',
-		{
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'strip', {
 			title  = 'Dancer Menu',
 			elements = elements
-		},
-		function(data, menu)
+		}, function(data, menu)
+
       	if data.current.label == 'Personne'	then
       		print(position.label)
       		TriggerServerEvent('esx_unishow:DeleteShow',position.label)
       	else
       		OpenDanceMenu(data.current,position,zone)
       	end
-		end,
-		function(data, menu)
+		end, function(data, menu)
 
 			menu.close()
 
 			CurrentAction     = 'strip_menu'
 			CurrentActionMsg  = 'menu'
 			CurrentActionData = {zone = zone}
-		end
-	)
+		end)
 end
 
 function OpenDanceMenu(dancer,position,zone)
   local position = position
   local dancer = dancer
   local elements = {}
-  for k,v in pairs(Config.Dict) do
 
+  for k,v in pairs(Config.Dict) do
     table.insert(elements,{
       label = v.label,
       name  = v.name,
       anim = v.anim,
-
     })
   end
 
 	ESX.UI.Menu.CloseAll()
 
-	ESX.UI.Menu.Open(
-		'default', GetCurrentResourceName(), 'strip',
-		{
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'strip', {
 			title  = 'Dance Menu',
 			elements = elements
-		},
-		function(data, menu)
+		}, function(data, menu)
       showUni(data.current,dancer,position)
-		end,
-		function(data, menu)
+		end, function(data, menu)
 
 			menu.close()
 
 			CurrentAction     = 'strip_menu'
 			CurrentActionMsg  = 'menu'
 			CurrentActionData = {zone = zone}
-		end
-	)
+		end)
 end
 
 function showUni(dance,dancer,position)
@@ -149,24 +132,18 @@ AddEventHandler('esx_unishow:StopDance',function(ped)
   DeletePed(ped)
 end)
 
-
 AddEventHandler('esx_unishow:hasEnteredMarker', function(zone)
 
 	CurrentAction     = 'strip_menu'
 	CurrentActionMsg  = 'appuyez sur ~INPUT_CONTEXT~ pour choisir les shows'
 	CurrentActionData = {zone = zone}
-
-
 end)
 
 AddEventHandler('esx_unishow:hasExitedMarker', function(zone)
 
 	CurrentAction = nil
 	ESX.UI.Menu.CloseAll()
-
 end)
-
-
 
 Citizen.CreateThread(function()
   while true do
