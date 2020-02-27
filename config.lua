@@ -1,7 +1,7 @@
 Config = {}
+Config.Locale = 'fr'
 
 Config.Ped = {
-
   {label='Stripteaseuse 1',type=5, hash='s_f_y_stripper_01'},
   {label='Stripteaseuse 2',type=5, hash='s_f_y_stripper_02'},
   {label='Stripteaseuse Fat',type=5, hash='a_f_m_fatcult_01'},
@@ -12,27 +12,27 @@ Config.Ped = {
 Config.Salle = {
   scene1 = {
     label = 'Fond scene gauche',
-    pos = {x=101.884, y=-1289.77, z=29.258, a=290.598},
+    vector3(101.8, -1289.7, 29.2, 290.5),
   },
   scene2 = {
     label = 'Fond scene droit',
-    pos = {x=104.6779, y=-1295.2697, z=29.258, a=297.289},
+    vector3(104.6, -1295.2, 29.2, 297.2),
   },
   scene3 = {
     label = 'Fond scene centre',
-    pos = {x=104.0453, y=-1292.199, z=29.258, a=298.912},
+    vector3(104.0, -1292.1, 29.2, 298.9),
   },
   scene4 = {
     label = 'scene centre',
-    pos = {x=107.359, y=-1290.2869, z=28.8587, a=297.33},
+    vector3(107.3, -1290.2, 28.8, 297.3),
   },
   scene5 = {
     label = 'scene avant gauche',
-    pos = {x=112.0371 ,y=-1286.2375, z=28.4586, a=30.04},
+    vector3(112.0, -1286.2, 28.4, 30.0),
   },
   scene6 = {
     label = 'scene avant droit',
-    pos = {x=113.205, y=-1288.293, z=28.4586, a=211.88},
+    vector3(113.2, -1288.2, 28.4, 211.8),
   }
 }
 
@@ -59,6 +59,5 @@ Config.Dict = {
   },
 }
 Config.Zones = {
-
-      Pos = { x = 122.35705566406, y = -1281.4152832031, z = 29.480518341064},
+      vector3(122.3, -1281.4, 29.4),
 }
