@@ -1,4 +1,4 @@
-Locales ['cs'] = {
+Locales ['en'] = {
   -- Client
   ['press_key'] = 'press ~INPUT_CONTEXT~ for choosing show',
   ['dance_menu'] = 'dance menu',
