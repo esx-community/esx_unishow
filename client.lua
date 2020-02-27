@@ -1,4 +1,4 @@
- ESX = nil
+ESX = nil
 
 Citizen.CreateThread(function()
   while ESX == nil do
@@ -20,25 +20,25 @@ function OpenPositionMenu(zone)
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'strip', {
-		title  = 'Position Menu',
+		title  = _U('position_menu'),
 		elements = elements
 	}, function(data, menu)
       		OpenDancerMenu(data.current,zone)
 	end, function(data, menu)
 
-			menu.close()
+		menu.close()
 
-			CurrentAction     = 'strip_menu'
-			CurrentActionMsg  = 'menu'
-			CurrentActionData = {zone = zone}
-		end)
+		CurrentAction     = 'strip_menu'
+		CurrentActionMsg  = 'menu'
+		CurrentActionData = {zone = zone}
+	end)
 end
 
 function OpenDancerMenu(position,zone)
   local position = position
-	local elements = {}
-      table.insert(elements,{
-      label = 'Personne',
+  local elements = {}
+     table.insert(elements, {
+      label = _U('person'),
       hash  = '',
       type = ''
     })
@@ -48,31 +48,29 @@ function OpenDancerMenu(position,zone)
       label = Config.Ped[i].label,
       hash  = Config.Ped[i].hash,
       type = Config.Ped[i].type
-
     })
   end
 
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'strip', {
-			title  = 'Dancer Menu',
-			elements = elements
-		}, function(data, menu)
+		title  = _U('dancer_menu'),
+		elements = elements
+	}, function(data, menu)
 
-      	if data.current.label == 'Personne'	then
-      		print(position.label)
-      		TriggerServerEvent('esx_unishow:DeleteShow',position.label)
+      	if data.current.label == 'Personne' then
+      		TriggerServerEvent('esx_unishow:DeleteShow', position.label)
       	else
-      		OpenDanceMenu(data.current,position,zone)
+      		OpenDanceMenu(data.current, position,zone)
       	end
-		end, function(data, menu)
+	end, function(data, menu)
 
-			menu.close()
+		menu.close()
 
-			CurrentAction     = 'strip_menu'
-			CurrentActionMsg  = 'menu'
-			CurrentActionData = {zone = zone}
-		end)
+		CurrentAction     = 'strip_menu'
+		CurrentActionMsg  = 'menu'
+		CurrentActionData = {zone = zone}
+	end)
 end
 
 function OpenDanceMenu(dancer,position,zone)
@@ -91,18 +89,18 @@ function OpenDanceMenu(dancer,position,zone)
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'strip', {
-		title  = 'Dance Menu',
+		title  = _U('dance_menu'),
 		elements = elements
 	}, function(data, menu)
       		showUni(data.current,dancer,position)
 	end, function(data, menu)
 
-			menu.close()
+		menu.close()
 
-			CurrentAction     = 'strip_menu'
-			CurrentActionMsg  = 'menu'
-			CurrentActionData = {zone = zone}
-		end)
+		CurrentAction     = 'strip_menu'
+		CurrentActionMsg  = 'menu'
+		CurrentActionData = {zone = zone}
+	end)
 end
 
 function showUni(dance,dancer,position)
@@ -134,7 +132,7 @@ end)
 
 AddEventHandler('esx_unishow:hasEnteredMarker', function(zone)
 	CurrentAction     = 'strip_menu'
-	CurrentActionMsg  = 'appuyez sur ~INPUT_CONTEXT~ pour choisir les shows'
+	CurrentActionMsg  = _U('press_key')
 	CurrentActionData = {zone = zone}
 end)
 
