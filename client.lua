@@ -20,11 +20,11 @@ function OpenPositionMenu(zone)
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'strip', {
-			title  = 'Position Menu',
-			elements = elements
-		}, function(data, menu)
-      OpenDancerMenu(data.current,zone)
-		end, function(data, menu)
+		title  = 'Position Menu',
+		elements = elements
+	}, function(data, menu)
+      		OpenDancerMenu(data.current,zone)
+	end, function(data, menu)
 
 			menu.close()
 
@@ -91,11 +91,11 @@ function OpenDanceMenu(dancer,position,zone)
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'strip', {
-			title  = 'Dance Menu',
-			elements = elements
-		}, function(data, menu)
-      showUni(data.current,dancer,position)
-		end, function(data, menu)
+		title  = 'Dance Menu',
+		elements = elements
+	}, function(data, menu)
+      		showUni(data.current,dancer,position)
+	end, function(data, menu)
 
 			menu.close()
 
@@ -133,7 +133,6 @@ AddEventHandler('esx_unishow:StopDance',function(ped)
 end)
 
 AddEventHandler('esx_unishow:hasEnteredMarker', function(zone)
-
 	CurrentAction     = 'strip_menu'
 	CurrentActionMsg  = 'appuyez sur ~INPUT_CONTEXT~ pour choisir les shows'
 	CurrentActionData = {zone = zone}
@@ -159,8 +158,8 @@ end)
 Citizen.CreateThread(function()
 	while true do
 		Wait(0)
-		local coords      = GetEntityCoords(GetPlayerPed(-1))
-		local isInMarker  = false
+		local coords = GetEntityCoords(GetPlayerPed(-1))
+		local isInMarker = false
 		local currentZone = nil
 
 		if(GetDistanceBetweenCoords(coords, Config.Zones.Pos.x, Config.Zones.Pos.y, Config.Zones.Pos.z, true) < 1) then
