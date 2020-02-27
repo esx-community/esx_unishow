@@ -12,9 +12,9 @@ function OpenPositionMenu(zone)
 
 	for k,v in pairs(Config.Salle) do
 	   table.insert(elements,{
-       label = v.label,
-       pos  = v.pos
-     })
+       		label = v.label,
+      		pos = v
+	   })
 	end
 
 	ESX.UI.Menu.CloseAll()
@@ -148,8 +148,8 @@ Citizen.CreateThread(function()
   while true do
     Wait(0)
     local coords = GetEntityCoords(GetPlayerPed(-1))
-        if(Config.Type ~= -1 and GetDistanceBetweenCoords(coords, Config.Zones.Pos.x, Config.Zones.Pos.y, Config.Zones.Pos.z, true) < 10) then
-          DrawMarker(2, Config.Zones.Pos.x, Config.Zones.Pos.y, Config.Zones.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 3, 3, 3, 255, 0, 0, 100, false, true, 2, false, false, false, false)
+        if(Config.Type ~= -1 and GetDistanceBetweenCoords(coords, Config.Zones.Pos, true) < 10) then
+          DrawMarker(2, Config.Zones.Pos, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 3, 3, 3, 255, 0, 0, 100, false, true, 2, false, false, false, false)
         end
   end
 end)
@@ -162,7 +162,7 @@ Citizen.CreateThread(function()
 		local isInMarker = false
 		local currentZone = nil
 
-		if(GetDistanceBetweenCoords(coords, Config.Zones.Pos.x, Config.Zones.Pos.y, Config.Zones.Pos.z, true) < 1) then
+		if(GetDistanceBetweenCoords(coords, Config.Zones.Pos, true) < 1) then
 			isInMarker  = true
 			currentZone = 'menustrip'
 			LastZone    = 'menustrip'
